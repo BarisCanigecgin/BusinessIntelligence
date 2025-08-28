@@ -31,15 +31,16 @@ php scripts/install_database.php
 ### 4. Web Sunucusu Ayarları
 
 #### Apache için:
-- `public/` klasörünü DocumentRoot olarak ayarlayın
+- Ana proje klasörünü DocumentRoot olarak ayarlayın
 - `.htaccess` dosyası mod_rewrite gerektirir
+- Örnek: `C:\Users\LENOVO\Desktop\BI\BusinessIntelligence`
 
 #### Nginx için:
 ```nginx
 server {
     listen 80;
     server_name your-domain.com;
-    root /path/to/BusinessIntelligence/public;
+    root /path/to/BusinessIntelligence;
     index dashboard.php;
 
     location / {
@@ -53,6 +54,11 @@ server {
     }
 }
 ```
+
+#### XAMPP/WAMP için:
+- Proje klasörünü `htdocs` içine kopyalayın
+- Örnek: `C:\xampp\htdocs\BusinessIntelligence\`
+- Erişim: `http://localhost/BusinessIntelligence/`
 
 ## 🚀 Erişim Adresleri
 

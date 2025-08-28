@@ -4,7 +4,7 @@
  * Interactive BI Dashboard for Luxury Watch Company
  */
 
-require_once dirname(__DIR__) . '/src/bootstrap.php';
+require_once 'src/bootstrap.php';
 
 use LuxuryWatch\BI\Analytics\SalesAnalytics;
 use LuxuryWatch\BI\Analytics\CustomerSegmentation;

@@ -4,7 +4,7 @@
  * Report generation and management system
  */
 
-require_once dirname(__DIR__) . '/src/bootstrap.php';
+require_once 'src/bootstrap.php';
 
 use LuxuryWatch\BI\Core\Report;
 use LuxuryWatch\BI\Analytics\SalesAnalytics;

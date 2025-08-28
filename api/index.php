@@ -5,7 +5,7 @@
  * Main API router and endpoint definitions
  */
 
-require_once dirname(__DIR__, 2) . '/src/bootstrap.php';
+require_once dirname(__DIR__) . '/src/bootstrap.php';
 
 use LuxuryWatch\BI\API\Router;
 use LuxuryWatch\BI\Analytics\SalesAnalytics;
