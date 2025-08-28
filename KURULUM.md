@@ -64,36 +64,36 @@ server {
 
 ### Dashboard
 ```
-http://your-domain/dashboard.php
+https://knowhowpilot.com/dashboard.php
 ```
 
 ### Raporlar
 ```
-http://your-domain/reports.php
+https://knowhowpilot.com/reports.php
 ```
 
 ### API Endpoints
 ```
-http://your-domain/api/v1/sales/overview
-http://your-domain/api/v1/customers/rfm-analysis
-http://your-domain/api/v1/inventory/overview
+https://knowhowpilot.com/api/v1/sales/overview
+https://knowhowpilot.com/api/v1/customers/rfm-analysis
+https://knowhowpilot.com/api/v1/inventory/overview
 ```
 
 ## 📊 Örnek API Kullanımı
 
 ### Satış Genel Bakış
 ```bash
-curl "http://your-domain/api/v1/sales/overview?date_range=30d"
+curl "https://knowhowpilot.com/api/v1/sales/overview?date_range=30d"
 ```
 
 ### Müşteri Segmentasyonu
 ```bash
-curl "http://your-domain/api/v1/customers/rfm-analysis"
+curl "https://knowhowpilot.com/api/v1/customers/rfm-analysis"
 ```
 
 ### Envanter Durumu
 ```bash
-curl "http://your-domain/api/v1/inventory/stock-levels"
+curl "https://knowhowpilot.com/api/v1/inventory/stock-levels"
 ```
 
 ## 🔧 Konfigürasyon

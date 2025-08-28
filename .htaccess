@@ -1,7 +1,12 @@
 # Luxury Watch BI System - Apache Configuration
+# Domain: https://knowhowpilot.com
 
 # Enable URL Rewriting
 RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Security Headers
 Header always set X-Content-Type-Options nosniff
@@ -12,6 +17,7 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 
 # CORS Headers for API
 <IfModule mod_headers.c>
+    SetEnvIf Origin "^https://knowhowpilot\.com$" CORS_ALLOW_ORIGIN=$0
     SetEnvIf Origin "^http(s)?://(.+\.)?(localhost|127\.0\.0\.1)(:[0-9]+)?$" CORS_ALLOW_ORIGIN=$0
     Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
     Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
