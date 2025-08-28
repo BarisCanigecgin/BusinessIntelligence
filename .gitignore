@@ -1,0 +1,48 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Vendor directory
+vendor/
+
+# Logs
+logs/
+*.log
+
+# Cache
+cache/
+temp/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Composer
+composer.lock
+
+# PHPUnit
+.phpunit.result.cache
+coverage/
+
+# Reports
+reports/generated/
+exports/
+
+# Uploads
+uploads/temp/
+
+# Node modules (if using frontend build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build files
+build/
+dist/

@@ -1,0 +1,92 @@
+# Luxury Watch BI System - Apache Configuration
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Security Headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:;"
+
+# CORS Headers for API
+<IfModule mod_headers.c>
+    SetEnvIf Origin "^http(s)?://(.+\.)?(localhost|127\.0\.0\.1)(:[0-9]+)?$" CORS_ALLOW_ORIGIN=$0
+    Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, X-API-Key"
+    Header always set Access-Control-Max-Age "86400"
+</IfModule>
+
+# Handle preflight OPTIONS requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# API Routing
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Dashboard as default page
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ dashboard.php [L]
+
+# Security - Hide sensitive files
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(sql|md|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to vendor and src directories
+RewriteCond %{REQUEST_URI} ^/(vendor|src)/
+RewriteRule ^(.*)$ - [F,L]
+
+# Cache static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Error Pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# PHP Settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value memory_limit 256M
+    php_value max_execution_time 300
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>

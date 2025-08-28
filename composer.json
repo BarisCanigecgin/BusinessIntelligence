@@ -1,0 +1,31 @@
+{
+    "name": "luxury-watch/business-intelligence",
+    "description": "Comprehensive Business Intelligence System for Luxury Watch Company",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "^5.4",
+        "monolog/monolog": "^3.0",
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "LuxuryWatch\\BI\\": "src/",
+            "LuxuryWatch\\BI\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyze": "phpstan analyse src --level=8",
+        "install-db": "php scripts/install_database.php"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
